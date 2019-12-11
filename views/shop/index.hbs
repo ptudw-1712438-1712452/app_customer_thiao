@@ -1,0 +1,44 @@
+{{> homeSlider}}
+{{> headerText}}
+<br />
+{{# each products}}
+<section class="main-content">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span12">
+                    <div id="myCarousel" class="myCarousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="thumbnails">
+                                    {{# each this}}
+                                    <li class="span3">
+                                        <div class="product-box">
+                                            <span class="sale_tag"></span>
+                                            <p><a href="product_detail.html"><img src="{{this.imagePath}}"  /></a></p>
+                                            <a href="product_detail.html" class="title">{{this.title}}</a><br/>
+                                            <a href="products.html" class="category">{{this.description}}</a>
+                                            <p class="price">${{this.price}}</p>
+                                        </div>
+                                    </li>
+                                    {{/each}}                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/each}}
+<div class="pagination">
+    <a href="/">*</a>
+  <a href="?page=1"><b>1</b></a>
+  <a href="?page=2"><b>2</b></a>
+  <a href="?page=3"><b>3</b></a>
+  <a href="?page=4"><b>4</b></a>
+  <a href="/">*</a>
+</div>
+
+{{> featureBox}}

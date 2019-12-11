@@ -1,0 +1,53 @@
+<section class="header_text sub">
+    <img class="pageBanner" src="../themes/images/pageBanner.png" alt="New products" >
+    <h3><span>Đăng nhập tài khoản</span></h3>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span2"></div>
+        <div class="span4">             
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                <fieldset>
+                   <h4 class="title"><span class="text"><strong>Đăng nhập</strong> </span></h4>
+                    {{#if hasErrors}}
+                        <div class="alert alert-danger">
+                            {{# each messages}}
+                                <p>{{this}}</p>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    <form action="/user/signin" method="post">
+                        <div class="form-group">
+                            <label for="email"><h5>E-Mail</h5></label>
+                            <input type="text" id="email" name="email" placeholder="Email của bạn" class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><h5>Mật khẩu</h5></label>
+                            <input type="password" id="password" name="password" placeholder="Mật khẩu của bạn" class="form-control input-xlarge">
+                        </div>
+                        </br >
+                        <input type="hidden" name="_csrf" value="{{ csrfToken}}">
+                        <button type="submit" class="btn btn-primary"> Đăng nhập</button>
+                    </form>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                <fieldset>
+                   <h4 class="title"><span class="text"><strong>Hoặc <i>Đăng nhập</i> với</strong> </span></h4>
+                    <img  src="../themes/images/thiago1.png"  >
+                    </br>
+                    <div class="control-group">
+                            <p><i><h5>(*)Nếu bạn chưa có tài khoản, <a href="/user/signup">đăng ký</a> tại đây</h5></i></p>
+                    </div>
+                </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="span2"></div>
+    </div>
+</section>
