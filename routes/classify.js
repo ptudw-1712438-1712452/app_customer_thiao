@@ -1,155 +1,22 @@
-var express = require('express');
-var router = express.Router();
-var Product = require('../models/product');
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/classify');
 
-router.get('/thethaomuahe', function(req, res, next) {
-    Product.find({title: 'trang phục thể thao mùa hè'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/thethaomuadong', function(req, res, next) {
-    Product.find({title: 'trang phục thể thao mùa đông'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/trangphucnu', function(req, res, next) {
-    Product.find({title: 'trang phục nữ'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/trangsucnu', function(req, res, next) {
-    Product.find({title: 'trang sức nữ'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/giaynu', function(req, res, next) {
-    Product.find({title: 'giày nữ'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/trangphucnam', function(req, res, next) {
-    Product.find({title: 'trang phục nam'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/trangsucnam', function(req, res, next) {
-    Product.find({title: 'trang sức nam'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/giaynam', function(req, res, next) {
-    Product.find({title: 'giày nam'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }             
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks  });
-      }); 
- });
- router.get('/banchaynhat', function(req, res, next) {
-    Product.find({price: '20'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }   
-        var page = parseInt(req.query.page) || 1;
-        var perPage= 2;
-        var start = (page - 1)*perPage;
-        var end = page * perPage;            
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
-      }); 
- });
- router.get('/Prada', function(req, res, next) {
-    Product.find({price: '15'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }   
-        var page = parseInt(req.query.page) || 1;
-        var perPage= 2;
-        var start = (page - 1)*perPage;
-        var end = page * perPage;            
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
-      }); 
- });
- router.get('/Salvatoreferragamo', function(req, res, next) {
-    Product.find({price: '20'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }   
-        var page = parseInt(req.query.page) || 1;
-        var perPage= 2;
-        var start = (page - 1)*perPage;
-        var end = page * perPage;            
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
-      }); 
- });
- router.get('/Fendi', function(req, res, next) {
-    Product.find({price: '25'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }   
-        var page = parseInt(req.query.page) || 1;
-        var perPage= 2;
-        var start = (page - 1)*perPage;
-        var end = page * perPage;            
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
-      }); 
- });
- router.get('/Givenchy', function(req, res, next) {
-    Product.find({price: '30'},function(err, docs){     
-        var productChunks = [];
-        var chunkSize = 4;     
-        for (var i=0; i< docs.length ; i += chunkSize){
-          productChunks.push(docs.slice(i, i+chunkSize));
-        }   
-        var page = parseInt(req.query.page) || 1;
-        var perPage= 2;
-        var start = (page - 1)*perPage;
-        var end = page * perPage;            
-       res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
-      }); 
- });
- module.exports = router;
+router.get('/thethaomuahe', controller.thethaomuahe);
+router.get('/thethaomuadong', controller.thethaomuadong);
+router.get('/trangphucnu', controller.trangphucnu);
+router.get('/trangsucnu', controller.trangsucnu);
+router.get('/giaynu', controller.giaynu);
+router.get('/trangphucnam', controller.trangphucnam);
+router.get('/trangsucnam', controller.trangsucnam);
+router.get('/giaynam', controller.giaynam);
+router.get('/banchaynhat', controller.banchaynhat);
+router.get('/Prada', controller.Prada);
+router.get('/Salvatoreferragamo', controller.Salvatoreferragamo);
+router.get('/Fendi', controller.Fendi);
+router.get('/Givenchy', controller.Givenchy);
+router.get('/search', controller.search);
+router.get('/price_1', controller.price_1);
+router.get('/price_2',controller.price_2);
+router.get('/price_3', controller.price_3);
+module.exports = router;

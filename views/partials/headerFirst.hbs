@@ -1,9 +1,12 @@
 <div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
-					<form method="POST" class="search_form">
-						<input type="text" class="input-block-level search-query" Placeholder="">
-					</form>
+					<form action="/classify/search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+						<div class="input-group">
+							<input type="search" name="term" class="form-control" placeholder="Quần,áo,giày,trang sức,...." aria-label="Search" >							
+							<input type="submit" class="btn btn-primary" value="Tìm kiếm">							
+						</div>
+        			</form>
 				</div>
 				<div class="span8">
 					<div class="account pull-right">
