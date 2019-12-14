@@ -1,27 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var expressHsb = require('express-handlebars');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var passport = require('passport');
-var flash = require('connect-flash');
-var expressValidator= require('express-validator');
-var bodyPaser = require('body-parser');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const expressHsb = require('express-handlebars');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+const expressValidator= require('express-validator');
+const bodyPaser = require('body-parser');
+const mongoStore = require('connect-mongo')(session); 
 
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/user');
+const classifyRouter = require('./routes/classify');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user');
-var classifyRouter = require('./routes/classify');
 
 mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
 require('./config/passport');
 
 
-var app = express();
+const app = express();
 app.use(expressValidator());
 
 // view engine setup
@@ -33,7 +34,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyPaser.json());
 app.use(bodyPaser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
+app.use(session({
+  secret: 'mysupersecret',
+  resave: false,
+  saveUninitialized: false,
+  store: new mongoStore({mongooseConnection: mongoose.connection}),
+  cookie: {maxAge: 180 * 60 * 1000}
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,11 +49,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
   res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
   next();
 });
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/classify', classifyRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

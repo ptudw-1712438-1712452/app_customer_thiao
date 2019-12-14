@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/classify');
+var express = require('express');
+var router = express.Router();
+var controller = require('../controllers/classify');
 
 router.get('/thethaomuahe', controller.thethaomuahe);
 router.get('/thethaomuadong', controller.thethaomuadong);

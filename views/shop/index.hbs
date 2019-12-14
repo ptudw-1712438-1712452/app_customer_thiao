@@ -15,10 +15,11 @@
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
-                                            <p><a href="product_detail.html"><img src="{{this.imagePath}}"  /></a></p>
-                                            <a href="product_detail.html" class="title">{{this.title}}</a><br/>
-                                            <a href="products.html" class="category">{{this.description}}</a>
-                                            <p class="price">${{this.price}}</p>
+                                            <p><a href="/product_detail/{{this._id}}"><img src="{{this.imagePath}}"  /></a></p>
+                                            <a href="/product_detail/{{this._id}}" class="title">{{this.title}}</a><br/>
+                                            <a href="/product_detail/{{this._id}}" class="category">{{this.description}}</a>                                   
+                                            <p href="/product_detail/{{this._id}}" class="price">${{this.price}}</p>
+                                            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Thêm vào giỏ hàng</a>                                           
                                         </div>
                                     </li>
                                     {{/each}}                                    

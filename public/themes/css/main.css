@@ -793,3 +793,44 @@ section.our_client .row{
 		border-bottom:1px solid #eee;
 	}
 }
+.bg1{
+	height: 300px;
+}
+body{
+	background-image: url(../images/bg2.jpg);
+}
+.bg2{
+	height: 30px;
+	width: 30px;
+}
+.bg3{
+	color: #df403d;
+}
+.bg4{
+	color: #111111;
+	font-size: 20px;
+}
+.bg5{
+	color: #eb4800;
+
+}
+.bg6{
+	color: #eee;
+	background-color:#4CAF50;
+}
+.bg7{
+	color: #eee;
+	background-color: #fd4004;
+	font-size: 15px;
+}
+.body1{
+	background-image: url(../images/bg3.jpg) ;
+	
+}
+.bg8{
+	height: 100px;
+	width: 100px;
+}
+.bg9{
+	color: #4CAF50;
+}

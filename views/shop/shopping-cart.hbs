@@ -1,0 +1,100 @@
+            <section class="header_text sub">
+			<img class="pageBanner" src="../themes/images/pageBanner.png" alt="New products" >
+				<h4><span>Giỏ hàng của bạn</span></h4>
+			</section>
+             {{# if products}}
+			<section class="main-content">				
+				<div class="row">
+					<div class="span9">					
+						<h4 class="title"><span class="text"><strong>Chi tiết</strong> Giỏ hàng</span></h4>
+						<table class="table table-striped">
+							<thead>
+								<tr class='bg5'>									
+									<th>Hình ảnh</th>
+									<th>Tên sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Đơn giá</th>
+									<th>Tổng đơn giá</th>
+								</tr>
+							</thead>
+                           
+                            {{# each products}}
+							<tbody>
+								<tr>
+									
+									<td><a href="/"><img alt="" src="{{ this.item.imagePath}}" class="bg8"></a></td>
+									<td>{{ this.item.description}}</td>
+									<td><a  class="btn btn-secondary btn-lg active" href="/reduce/{{this.item._id}}" role="button">-</a>&emsp;{{this.qty}}&emsp;<a  class="btn btn-secondary btn-lg active" href="/increase/{{this.item._id}}" role="button">+</a>
+                                    <br/><br/>&emsp; <a href="/deleteall/{{this.item._id}}"><img src="../themes/images/xoa.png" class="bg2"  /></a></td>
+									<td>${{ this.item.price}}</td>
+									<td>${{ this.price}}</td>
+								</tr>			  		  
+							</tbody>
+                            {{/each}}
+                            
+						</table>
+						<hr>					
+					</div>
+					<div class="span3 col">
+						<div class="block">	
+							<ul class="nav nav-list">
+								<li class="nav-header">Địa điểm</li>
+								<li><p><img src="../themes/images/vitri.jpg" class="bg2" /> Hồ Chí Minh, quận 8, phường 4, Phạm Thế Hiển</p></li>
+							</ul>
+							<hr  width="100%" align="center" /> 
+							<ul class="nav nav-list below">
+								<li class="nav-header bg5"><h5>Thông tin đơn hàng</h5></li>
+								<li><strong>Số lượng sản phẩm:&emsp;{{this.totalQty}} </strong></li><br/>
+                                <li><strong>Tổng tiền (tạm tính):&emsp;${{this.totalPrice}}</strong></li><br/>
+								<li><strong>Phí giao hàng:&emsp;$0</strong></li>
+                                <li>(giao hàng miễn phí)</li>
+                                <hr>
+								<li><strong><h5 class="bg9">Tổng thanh toán:&emsp;${{this.totalPrice}}</h5></strong></li>
+                                <hr>
+                                <button type="submit" class="bg7"> Xác nhận giỏ hàng</button>
+							</ul>
+						</div>						
+					</div>
+				</div>
+			</section>
+            {{ else }}
+            <section class="main-content">				
+				<div class="row">
+					<div class="span9">					
+						<h4 class="title"><span class="text"><strong>Chi tiết</strong> Giỏ hàng</span></h4>
+						<table class="table table-striped">
+							<thead>
+								<tr class='bg5'>									
+									<th>Hình ảnh</th>
+									<th>Tên sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Đơn giá</th>
+									<th>Tổng đơn giá</th>
+								</tr>
+							</thead>                         
+						</table>
+						<hr>					
+					</div>
+					<div class="span3 col">
+						<div class="block">	
+							<ul class="nav nav-list">
+								<li class="nav-header">Địa điểm</li>
+								<li><p><img src="../themes/images/vitri.jpg" class="bg2" /> Hồ Chí Minh, quận 8, phường 4, Phạm Thế Hiển</p></li>
+							</ul>
+							<hr  width="100%" align="center" /> 
+							<ul class="nav nav-list below">
+								<li class="nav-header bg5"><h5>Thông tin đơn hàng</h5></li>
+								<li><strong>Số lượng sản phẩm:&emsp;{{this.totalQty}} </strong></li><br/>
+                                <li><strong>Tổng tiền (tạm tính):&emsp;${{this.totalPrice}}</strong></li><br/>
+								<li><strong>Phí giao hàng:&emsp;$0</strong></li>
+                                <li>(giao hàng miễn phí)</li>
+                                <hr>
+								<li><strong><h5 class="bg9">Tổng thanh toán:&emsp;${{this.totalPrice}}</h5></strong></li>
+                                <hr>
+                                <button type="submit" class="bg7"> Xác nhận giỏ hàng</button>
+							</ul>
+						</div>						
+					</div>
+				</div>
+			</section>
+            {{/if}}
