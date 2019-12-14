@@ -1,8 +1,8 @@
-const Product = require('../models/product');
+var Product = require('../models/product');
 
 
 module.exports.thethaomuahe =function(req, res, next) {
-    const condition={title: 'trang phục thể thao mùa hè'};
+  var condition={title: 'trang phục thể thao mùa hè'};
     Product.find(condition,function( err, docs){     
         var productChunks = [];
        var chunkSize = 4;     
