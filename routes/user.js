@@ -5,12 +5,14 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 var controller = require('../controllers/user');
 
+router.get('/profile', isLoggedIn ,controller.profile);
 router.get('/logout',isLoggedIn ,controller.logout);
 router.use('/', notLoggedIn, controller.notLogin);
 router.get('/signup', controller.signup);
-router.post('/signup', controller.postSignup); 
+router.post('/signup', controller.postSignup, controller.postSignupUrl); 
 router.get('/signin', controller.signin);
-router.post('/signin', controller.postSignin);
+router.post('/signin', controller.postSignin, controller.postSigninUrl);
+
   
 module.exports = router;
 

@@ -8,6 +8,7 @@
 						</div>
         			</form>
 				</div>
+				
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
@@ -18,8 +19,9 @@
 									<span class="badge">{{session.cart.totalQty}}</span>
 								</a>
 							</li>
-							<li><a href="/" >Kiểm tra</a></li>	
+								
                             {{# if login}}
+								<li><a href="/user/profile" >Lich sử mua hàng</a></li>
                                 <li><a href="/" >Chào mừng quý khách</a></li>	
 							    <li><a href="/user/logout" >Đăng xuất</a></li>
                                 {{else}}

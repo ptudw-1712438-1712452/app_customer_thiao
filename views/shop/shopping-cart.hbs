@@ -22,7 +22,7 @@
 							<tbody>
 								<tr>
 									
-									<td><a href="/"><img alt="" src="{{ this.item.imagePath}}" class="bg8"></a></td>
+									<td><a href="/"><img alt="" src="{{ this.item.imagePath_1}}" class="bg8"></a></td>
 									<td>{{ this.item.description}}</td>
 									<td><a  class="btn btn-secondary btn-lg active" href="/reduce/{{this.item._id}}" role="button">-</a>&emsp;{{this.qty}}&emsp;<a  class="btn btn-secondary btn-lg active" href="/increase/{{this.item._id}}" role="button">+</a>
                                     <br/><br/>&emsp; <a href="/deleteall/{{this.item._id}}"><img src="../themes/images/xoa.png" class="bg2"  /></a></td>
@@ -51,7 +51,9 @@
                                 <hr>
 								<li><strong><h5 class="bg9">Tổng thanh toán:&emsp;${{this.totalPrice}}</h5></strong></li>
                                 <hr>
-                                <button type="submit" class="bg7"> Xác nhận giỏ hàng</button>
+								<a href="/checkout">
+                                	<button type="submit" class="bg7"> Xác nhận giỏ hàng</button>
+								</a>
 							</ul>
 						</div>						
 					</div>
@@ -91,7 +93,7 @@
                                 <hr>
 								<li><strong><h5 class="bg9">Tổng thanh toán:&emsp;${{this.totalPrice}}</h5></strong></li>
                                 <hr>
-                                <button type="submit" class="bg7"> Xác nhận giỏ hàng</button>
+                                <button type="submit" class="bg7" href='/checkout'> Xác nhận giỏ hàng</button>
 							</ul>
 						</div>						
 					</div>

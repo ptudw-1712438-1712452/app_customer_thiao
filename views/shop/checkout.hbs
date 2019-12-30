@@ -1,0 +1,70 @@
+<section class="header_text sub">
+    <img class="pageBanner" src="../themes/images/pageBanner.png" alt="New products" >
+    <h3><span>Thông tin giao hàng và Thanh toán</span></h3>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span2"></div>
+        <div class="span4">             
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                <fieldset>
+                   <h4 class="title"><span class="text"><strong>Giao hàng và Thanh toán</strong> </span></h4>  
+                   <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
+                        {{errMsg}}
+                   </div>                 
+                    <form action="/checkout" method="post" id="checkout-form">
+                        <div class="form-group">
+                            <label for="name"><h5>Tên người nhận</h5></label>
+                            <input type="text" id="name" name="name" placeholder="Tên người nhận hàng" class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><h5>Số điện thoại </h5></label>
+                            <input type="text" id="phone" name="phone" placeholder="Số điện thoại liên hệ " class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="address"><h5>Địa chỉ nhận hàng</h5></label>
+                            <input type="text" id="address" name="address" placeholder="Địa chỉ nhận hàng" class="form-control input-xlarge">
+                        </div>  
+                        <div class="form-group">
+                            <label for="card-name"><h5>Tên chủ thẻ</h5></label>
+                            <input type="text" id="card-name" name="card-name" placeholder="Tên in trên thẻ tín dụng" class="form-control input-xlarge">
+                        </div> 
+                        <div class="form-group">
+                            <label for="card-number"><h5>Số thẻ tín dụng</h5></label>
+                            <input type="text" id="card-number" name="card-number" placeholder="Số thẻ tín dụng" class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-month"><h5>Tháng hết hạn</h5></label>
+                            <input type="text" id="card-expiry-month" name="card-expiry-month" placeholder="Tháng hết hạn thẻ tín dụng" class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-year"><h5>Năm hết hạn</h5></label>
+                            <input type="text" id="card-expiry-year" name="card-expiry-year" placeholder="Năm hết hạn thẻ tín dụng" class="form-control input-xlarge">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc"><h5>Mã CVC</h5></label>
+                            <input type="text" id="card-cvc" name="card-cvc" placeholder="Mã CVC thẻ tín dụng" class="form-control input-xlarge">
+                        </div>                                            
+                        <button type="submit" class="bg7"> Mua ngay</button>						                
+                    </form>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="span5">
+             <br /><br />
+             <img src="../themes/images/cart.jpg"  />
+             <br /><br />
+             <ul class="nav nav-list below">
+                <li class="nav-header bg5"><h5>Hướng dẫn đọc thông tin thẻ tín dụng</h5></li>
+                <li><strong>(1) Số thẻ tín dụng</strong></li><br/>
+                <li><strong>(2) Tháng/Năm hết hạn</strong></li><br/>
+                <li><strong>(3) Tên chủ thẻ</strong></li><br/>
+                <li><strong>(4) CVC</strong></li>               
+            </ul>
+        </div>
+        <div class="span1"></div>      
+    </div>
+</section>
+

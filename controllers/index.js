@@ -1,7 +1,9 @@
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+var Order = require('../models/order');
 
 module.exports.index = function(req, res, next) {
+  var successMsg = req.flash('success')[0];
     Product.find(function(err, docs){
       var productChunks = [];
       var chunkSize = 4;     
@@ -12,17 +14,19 @@ module.exports.index = function(req, res, next) {
       var perPage= 2;
       var start = (page - 1)*perPage;
       var end = page * perPage;    
-     res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end)  });
+     res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end) ,successMsg: successMsg, noMessages: !successMsg  });
     }); 
  }
-
-module.exports.productdetail = function(req, res, next){
-  var productId = req.params.id;
+ module.exports.productdetail = async (req, res, next) =>{
+  const productId = req.params.id; 
+  const product = await Product.find({_id: productId});
   
-  Product.findById(productId, function(err, product){
-    res.render('shop/product_detail', { title: 'Shopping Cart', products: product  });   
-  });
-}
+   Product.find({title: product.title},function(err,docs){
+  
+    res.render('shop/product_detail', { product: product, products: docs });  
+     
+});
+ }
 
 module.exports.addToCart = function(req, res, next){
   var productId = req.params.id;
@@ -45,6 +49,43 @@ module.exports.shoppingCart = function(req, res, next){
    var cart =new Cart(req.session.cart);
    res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice, totalQty: cart.totalQty } );
  }
+module.exports.checkout = function(req,res, next){ 
+  if(!req.session.cart){
+    return res.redirect('/shopping-cart');
+  }
+  var errMsg = req.flash('error')[0];
+  res.render('shop/checkout',{errMsg: errMsg, noError: !errMsg });
+}
+module.exports.postCheckout = function(req, res, next){
+  if(!req.session.cart){
+    return res.redirect('/shopping-cart');
+  }
+  var cart =new Cart(req.session.cart);
+  var stripe = require("stripe")("sk_test_LtWM5l2cRmp31sE2pnQfZwwA00JAVagfgi");
+  stripe.charges.create({
+    amount: cart.totalPrice*100,
+    currency: "usd",
+    source: req.body.stripeToken,
+    description:"Test Charge"
+  }, function(err, charge){
+      if(err){
+        req.flash('error', err.message);
+        return res.redirect('/checkout');
+      }
+      var order = new Order({
+        user: req.user,
+        cart: cart,
+        address: req.body.address,
+        name: req.body.name,
+        paymentId: charge.id
+      });
+      order.save(function(err, result){
+        req.flash('success','Đặt mua hàng thành công!');
+        req.session.cart = null;
+        res.redirect('/');
+      });     
+  });
+}
 
 module.exports.reduce = function(req, res, next){
   var productId = req.params.id;
@@ -69,3 +110,4 @@ module.exports.deleteAll = function(req, res, next){
   req.session.cart = cart;
   res.redirect('/shopping-cart');
 }
+
