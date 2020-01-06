@@ -19,7 +19,7 @@ passport.use('local.signup', new LocalStrategy({
     passReqToCallback: true
 }, function(req, email, password, done){         
     req.checkBody('email','Email không hợp lệ!').notEmpty().isEmail();
-    req.checkBody('password','Mật khẩu không hợp lệ! (Ít nhất 6 ký tự)').notEmpty().isLength({min: 6});
+    req.checkBody('password','Mật khẩu không hợp lệ! (Ít nhất 6 ký tự hoặc mật khẩu nhập lại chưa đúng) ').notEmpty().isLength({min: 6}).equals(req.body.cofirmPassword);
     var errors= req.validationErrors();
     if(errors){
         var message=[];

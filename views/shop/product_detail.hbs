@@ -2,20 +2,18 @@
     <img class="pageBanner bg1" src="../themes/images/pageBanner.png" alt="New products" >  
     <h4><span>Chi tiết sản phẩm</span></h4> 
 </section>
- 
+
 <section class="main-content body1">
     {{# each product }}
-    <div class="row">
-        
-        <div class="span1"></div>
-        <div class="span3">
+    <div class="row">      
+        <div class="span1"></div>   
+        <div class="span3">       
             <div class="row">
                 <h4 class="title">                           
                     <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>               
                 </h4>
                 <div id="myCarousel" class="myCarousel carousel slide">
-                    <div class="carousel-inner">
-                       
+                    <div class="carousel-inner">                      
                         <div class="active item">
                             <ul class="thumbnails">
                                 <div class="product-box">
@@ -39,10 +37,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>      
         </div>
         <div class="span1"></div>
-        <div class="span4">
+        <div class="span4">           
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <h2 class="bg3"><i>{{title}}</i></h2>
@@ -58,8 +56,8 @@
                     <hr  width="100%" align="center" />
                     <a href="/add-to-cart/{{this._id}}" ><button type="submit" class="bg7"> Thêm vào giỏ hàng</button></a>
                 </div>
-            </div>
-        </div>
+            </div>     
+        </div>  
         <div class="span2">
             <p><i>Tùy chọn giao hàng</i></p>
             <p><img src="../themes/images/vitri.jpg" class="bg2" />   Hồ Chí Minh,Quận 1,Phường Phạm Ngũ Lão</p>             
@@ -72,26 +70,28 @@
             <p><img src="../themes/images/luachon.png" class="bg2" />   15 ngày trả hàng(được đổi trả với lý do không vừa ý)</p> 
             <p><img src="../themes/images/khongbaohanh.jpg" class="bg2" />   Không áp dụng chính sách bảo hành</p>       
         </div>
-        <div class="span1"></div>
-    </div>
-    
+        <div class="span1"></div>   
+    </div>  
     {{/each}}
     </section>
-
-     <hr  width="100%" align="center" /> 
-    
-   
+<hr  width="100%" align="center" /> 
 <section class="main-content">
-    {{# each products}}
+   
     <div class="row">
         <div class="span12">
             <div class="row">
                 <div class="span12">
-                    <div id="myCarousel" class="myCarousel carousel slide">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text"><span class="line">Sản phẩm <strong>Liên quan</strong></span></span></span>
+                        <span class="pull-right">
+                        <a class="left button" href="#myCarouse2" data-slide="prev"></a><a class="right button" href="#myCarouse2" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarouse2" class="myCarousel carousel slide">
                         <div class="carousel-inner">
                             <div class="active item">
                                 <ul class="thumbnails">
-                                    {{# each this}}
+                                     {{#each productdetail }}
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
@@ -99,25 +99,97 @@
                                             <a href="/product_detail/{{this._id}}" class="title">{{this.title}}</a><br/>
                                             <a href="/product_detail/{{this._id}}" class="category">{{this.description}}</a>                                   
                                             <p href="/product_detail/{{this._id}}" class="price">${{this.price}}</p>
-                                            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Thêm vào giỏ hàng</a>                                           
+                                            <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Thêm vào giỏ hàng</a>
                                         </div>
                                     </li>
-                                    {{/each}}                                    
+                                    {{/each}}
                                 </ul>
-                            </div>
+                            </div>                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{/each}}
+    
 </section>
-
-
-    <br />
-    <br />
     <hr  width="100%" align="center" /> 
+
+<section class="main-content">
+   
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span12">
+                    <h4 class="title">
+                        <span class="text"><span class="line">Nhận xét <strong>Sản phẩm</strong></span></span>
+                        <br />
+                        <br /> 
+                    </h4>
+                        {{#each cmt}}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class='bg5'>									
+                                    <th>{{this.email}}</th>
+                                    <th></th>
+                                   
+                                </tr>
+                            </thead>                                 
+                            <tbody>                                  
+                                <tr>               
+                                    <td>{{this.content}}</td>
+                                    <td></td>                                                
+                                </tr>	                               		  		  
+                            </tbody>                    
+                        </table> 
+                        {{/each}}  
+                        <form action="/insertCmt" method="post">
+                         <table class="table table-striped">
+                            <thead>
+                                <tr class='bg11'>									
+                                    <th><h5>Thêm nhận xét:</h5> </th>
+                                    <th></th>                                  
+                                </tr>
+                            </thead>
+                            <thead>
+                                <tr class='bg5'>									
+                                    <th><h5>Tác giả:
+                                        <br/>
+                                        <div class="input-group">
+                                            <input type="name" id="name" name="name" class="form-control" >														
+						                </div>
+                                    </h5> </th>
+                                    <th></th>                                  
+                                </tr>
+                            </thead>                                 
+                            <tbody>                                  
+                                <tr>               
+                                    <td><h5>Nhận xét:
+                                        <div class="input-group">
+                                            <input type="cmt" id="cmt" name="cmt" class="form-control" >														
+						                </div>
+                                        <button action="/insertCmt" type="submit">Thêm</button>
+                                    </h5></td>
+                                    <td></td>                                                
+                                </tr>	                               		  		  
+                            </tbody>                    
+                        </table>   
+                    </form>           
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="pagination">
+  <a href="?page=1"><b>1</b></a>
+  <a href="?page=2"><b>2</b></a>
+  <a href="?page=3"><b>3</b></a>
+  <a href="?page=4"><b>4</b></a>
+</div>
+
+
+
 {{> featureBox}}
 
 

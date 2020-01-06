@@ -1,6 +1,7 @@
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 var Order = require('../models/order');
+var Comment = require('../models/comment');
 
 module.exports.index = function(req, res, next) {
   var successMsg = req.flash('success')[0];
@@ -17,17 +18,30 @@ module.exports.index = function(req, res, next) {
      res.render('shop/index', { title: 'Shopping Cart', products: productChunks.slice(start, end) ,successMsg: successMsg, noMessages: !successMsg  });
     }); 
  }
- module.exports.productdetail = async (req, res, next) =>{
-  const productId = req.params.id; 
-  const product = await Product.find({_id: productId});
-  
-   Product.find({title: product.title},function(err,docs){
-  
-    res.render('shop/product_detail', { product: product, products: docs });  
-     
-});
- }
+module.exports.productdetail = async(req, res) => {
+  var productId = req.params.id; 
+  var product = await Product.find({_id: productId});
+  var tt=product[0].title;
+  var productdetail = await Product.find({title: tt}); 
+  var cmt = await Comment.find({id_sp: productId});
+  var page = parseInt(req.query.page) || 1;
+      var perPage= 4;
+      var start = (page - 1)*perPage;
+      var end = page * perPage;
+  res.render('shop/product_detail', { product: product, productdetail: productdetail, cmt: cmt.slice(start, end)});
 
+}
+module.exports.insertComment = function(req, res, next){
+  var productId = req.params.id;
+  var newCmt = {
+    id_sp: productId,
+    email: req.body.name,
+    content: req.body.cmt
+  }
+  var dataCmt = new Comment(newCmt);
+  dataCmt.save();
+  res.redirect('/product_detail/');
+}   
 module.exports.addToCart = function(req, res, next){
   var productId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart: {items: {}});

@@ -12,7 +12,7 @@ router.get('/signup', controller.signup);
 router.post('/signup', controller.postSignup, controller.postSignupUrl); 
 router.get('/signin', controller.signin);
 router.post('/signin', controller.postSignin, controller.postSigninUrl);
-
+router.get('/account', controller.account);
   
 module.exports = router;
 

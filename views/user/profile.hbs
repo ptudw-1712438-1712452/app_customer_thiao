@@ -1,25 +1,41 @@
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <h1>Lịch sử mua sắm của bạn</h1>
-        <hr>
-        <h2>Đơn hàng của bạn</h2>
-        {{# each orders}}
-        <div class="panel panel-default">
-              <div class="panel-body">                   
-                   <ul class="list-group">
-                       {{# each this.items}}
-                       <li class="list-group-item">
-                           <span class="badge">{{ this.price }}</span>
-                           {{ this.item.title}} | {{ this.qty }} Số lượng
-                           Item 1
-                       </li>
-                       {{/each}}                    
-                   </ul>                   
-              </div>
-              <div class="panel-footer">
-                  <strong>Tổng tiền: ${{ this.cart.totalPrice}}</strong> 
-                </div>
-        </div>  
-        {{/each}}    
-    </div>
+<div class="block">	
+    <h4 class="title"><span class="text"><strong>Đơn hàng</strong> Đã đặt</span></h4>
+    
+<table class="table table-striped">
+    <thead>
+        <tr class='bg5'>									
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>           
+            <th>Tổng đơn giá</th>
+        </tr>
+    </thead>       
+    {{# each orders}}
+    <tbody>
+            {{# each this.items}}
+        <tr>               
+            <td><a href="/"><img alt="" src="{{ this.item.imagePath_1}}" class="bg8"></a></td>
+            <td>{{ this.item.description}}</td>
+            <td>{{this.qty}}</td>               
+            <td>${{ this.price}}</td>               
+        </tr>	
+        {{/each}} 		  		  
+    </tbody>
+    <tbody>
+            
+        <tr>               
+            <td><h5>Tổng tiền: ${{ this.cart.totalPrice}}</h5></td>
+            <td></td>
+            <td></td>                           
+            <td></td>               
+        </tr>	
+                            
+    </tbody>
+    
+    {{/each}}       
+</table>
 </div>
+
+
+
+   

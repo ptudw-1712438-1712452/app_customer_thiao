@@ -6,6 +6,7 @@ router.use(csrfProtection);
 var passport= require('passport');
 var Order = require('../models/order');
 var Cart = require('../models/cart');
+var User = require('../models/user');
 
 module.exports.logout = function(req, res, next){
     req.logout();
@@ -62,4 +63,9 @@ module.exports.profile = function(req, res, next){
         res.render('user/profile',{orders: orders});
     }); 
 }
-
+module.exports.account = function(req, res, next){
+    var userID = req.params.id;
+    User.find({_id: userID} , function(err, user){
+        res.render('user/account', {user: user});
+    } )
+}

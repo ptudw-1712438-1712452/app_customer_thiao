@@ -10,8 +10,10 @@ router.get('/reduce/:id', controller.reduce);
 router.get('/increase/:id', controller.increase);
 router.get('/deleteall/:id', controller.deleteAll);
 router.get('/product_detail/:id',controller.productdetail);
+router.post('/insertCmt', controller.insertComment);
 router.get('/checkout',isLoggedIn, controller.checkout);
 router.post('/checkout',isLoggedIn, controller.postCheckout);
+
 
 module.exports = router;
 
