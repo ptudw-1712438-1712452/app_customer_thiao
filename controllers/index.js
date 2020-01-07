@@ -40,7 +40,7 @@ module.exports.insertComment = function(req, res, next){
   }
   var dataCmt = new Comment(newCmt);
   dataCmt.save();
-  res.redirect('/product_detail/');
+  res.redirect('/');
 }   
 module.exports.addToCart = function(req, res, next){
   var productId = req.params.id;

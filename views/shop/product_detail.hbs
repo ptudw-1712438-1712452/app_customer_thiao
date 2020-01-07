@@ -143,7 +143,9 @@
                             </tbody>                    
                         </table> 
                         {{/each}}  
-                        <form action="/insertCmt" method="post">
+                         {{# each product }}
+                            
+                        <form action="/product_detail/{{this._id}}" method="post">
                          <table class="table table-striped">
                             <thead>
                                 <tr class='bg11'>									
@@ -151,6 +153,16 @@
                                     <th></th>                                  
                                 </tr>
                             </thead>
+                            {{# if login}}
+                            <thead>
+                                <tr class='bg5'>									
+                                    <th><h5>Người viết:
+                                        <p></p>                                     
+                                    </h5> </th>
+                                    <th></th>                                  
+                                </tr>
+                            </thead> 
+                            {{else}}
                             <thead>
                                 <tr class='bg5'>									
                                     <th><h5>Tác giả:
@@ -161,20 +173,23 @@
                                     </h5> </th>
                                     <th></th>                                  
                                 </tr>
-                            </thead>                                 
+                            </thead>  
+                            {{/if}}                               
                             <tbody>                                  
                                 <tr>               
                                     <td><h5>Nhận xét:
                                         <div class="input-group">
                                             <input type="cmt" id="cmt" name="cmt" class="form-control" >														
 						                </div>
-                                        <button action="/insertCmt" type="submit">Thêm</button>
+                                        <button action="/product_detail/{{this._id}}" type="submit">Thêm</button>
                                     </h5></td>
                                     <td></td>                                                
                                 </tr>	                               		  		  
                             </tbody>                    
                         </table>   
-                    </form>           
+                    </form>  
+                    
+                    {{/each}}         
                     </h4>
                 </div>
             </div>
